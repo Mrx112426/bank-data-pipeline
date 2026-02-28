@@ -1,0 +1,93 @@
+[2026-02-27T10:33:09.119+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T10:33:09.163+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:09.175+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:09.176+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T10:33:09.191+0000] {taskinstance.py:2330} INFO - Executing <Task(PostgresOperator): transform_transactions_to_core> on 2025-12-01 00:00:00+00:00
+[2026-02-27T10:33:09.199+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=9655) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T10:33:09.199+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'transform_transactions_to_core', 'scheduled__2025-12-01T00:00:00+00:00', '--job-id', '1484', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmp1xq147vo']
+[2026-02-27T10:33:09.201+0000] {standard_task_runner.py:64} INFO - Started process 9656 to run task
+[2026-02-27T10:33:09.201+0000] {standard_task_runner.py:91} INFO - Job 1484: Subtask transform_transactions_to_core
+[2026-02-27T10:33:09.256+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T10:33:09.345+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='transform_transactions_to_core' AIRFLOW_CTX_EXECUTION_DATE='2025-12-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-01T00:00:00+00:00'
+[2026-02-27T10:33:09.347+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T10:33:09.368+0000] {sql.py:282} INFO - Executing: 
+                    INSERT INTO core.transactions
+                    SELECT * FROM staging.transactions
+                    ON CONFLICT (transaction_id) 
+                    DO UPDATE SET
+                        amount_rub = EXCLUDED.amount_rub, cashback_amount = EXCLUDED.cashback_amount, status = EXCLUDED.status;
+                
+[2026-02-27T10:33:09.382+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T10:33:09.395+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T10:33:09.403+0000] {sql.py:495} INFO - Running statement: 
+                    INSERT INTO core.transactions
+                    SELECT * FROM staging.transactions
+                    ON CONFLICT (transaction_id) 
+                    DO UPDATE SET
+                        amount_rub = EXCLUDED.amount_rub, cashback_amount = EXCLUDED.cashback_amount, status = EXCLUDED.status;
+                , parameters: None
+[2026-02-27T10:33:09.428+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T10:33:09.430+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 288, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 442, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 500, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.ForeignKeyViolation: insert or update on table "transactions" violates foreign key constraint "transactions_card_id_fkey"
+DETAIL:  Key (card_id)=(af574d89-ad1f-4151-b790-9f22d35e0ec9) is not present in table "cards".
+
+[2026-02-27T10:33:09.445+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=staging_to_core, task_id=transform_transactions_to_core, run_id=scheduled__2025-12-01T00:00:00+00:00, execution_date=20251201T000000, start_date=20260227T103309, end_date=20260227T103309
+[2026-02-27T10:33:09.463+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1484 for task transform_transactions_to_core (insert or update on table "transactions" violates foreign key constraint "transactions_card_id_fkey"
+DETAIL:  Key (card_id)=(af574d89-ad1f-4151-b790-9f22d35e0ec9) is not present in table "cards".
+; 9656)
+[2026-02-27T10:33:09.499+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-02-27T10:33:09.514+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T10:33:09.530+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T10:33:09.538+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:05:07.108+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:05:07.161+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:07.189+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:07.190+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:05:07.217+0000] {taskinstance.py:2330} INFO - Executing <Task(PostgresOperator): transform_transactions_to_core> on 2025-12-01 00:00:00+00:00
+[2026-02-27T19:05:07.226+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=33717) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:05:07.228+0000] {standard_task_runner.py:64} INFO - Started process 33718 to run task
+[2026-02-27T19:05:07.227+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'transform_transactions_to_core', 'scheduled__2025-12-01T00:00:00+00:00', '--job-id', '1916', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpwmqe7o2m']
+[2026-02-27T19:05:07.230+0000] {standard_task_runner.py:91} INFO - Job 1916: Subtask transform_transactions_to_core
+[2026-02-27T19:05:07.336+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.transform_transactions_to_core scheduled__2025-12-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:05:07.496+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='transform_transactions_to_core' AIRFLOW_CTX_EXECUTION_DATE='2025-12-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-01T00:00:00+00:00'
+[2026-02-27T19:05:07.498+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:05:07.539+0000] {sql.py:282} INFO - Executing: 
+                    INSERT INTO core.transactions
+                    SELECT * FROM staging.transactions
+                    ON CONFLICT (transaction_id) 
+                    DO UPDATE SET
+                        amount_rub = EXCLUDED.amount_rub, cashback_amount = EXCLUDED.cashback_amount, status = EXCLUDED.status;
+                
+[2026-02-27T19:05:07.569+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:05:07.585+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:05:07.596+0000] {sql.py:495} INFO - Running statement: 
+                    INSERT INTO core.transactions
+                    SELECT * FROM staging.transactions
+                    ON CONFLICT (transaction_id) 
+                    DO UPDATE SET
+                        amount_rub = EXCLUDED.amount_rub, cashback_amount = EXCLUDED.cashback_amount, status = EXCLUDED.status;
+                , parameters: None
+[2026-02-27T19:05:07.599+0000] {sql.py:504} INFO - Rows affected: 6
+[2026-02-27T19:05:07.604+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:05:07.633+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=transform_transactions_to_core, run_id=scheduled__2025-12-01T00:00:00+00:00, execution_date=20251201T000000, start_date=20260227T190507, end_date=20260227T190507
+[2026-02-27T19:05:07.697+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:05:07.721+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T19:05:07.739+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:05:07.744+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

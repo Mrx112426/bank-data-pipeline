@@ -1,0 +1,70 @@
+[2026-02-27T10:18:43.263+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T10:18:43.313+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:18:43.324+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:18:43.326+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T10:18:43.348+0000] {taskinstance.py:2330} INFO - Executing <Task(PostgresOperator): transform_dict_tariffs_to_core> on 2025-01-01 00:00:00+00:00
+[2026-02-27T10:18:43.357+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'transform_dict_tariffs_to_core', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '1287', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpxok9cdd8']
+[2026-02-27T10:18:43.360+0000] {standard_task_runner.py:91} INFO - Job 1287: Subtask transform_dict_tariffs_to_core
+[2026-02-27T10:18:43.361+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=8293) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T10:18:43.362+0000] {standard_task_runner.py:64} INFO - Started process 8294 to run task
+[2026-02-27T10:18:43.420+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T10:18:43.521+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='transform_dict_tariffs_to_core' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2026-02-27T10:18:43.522+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T10:18:43.539+0000] {sql.py:282} INFO - Executing: 
+                    INSERT INTO core.dict_tariffs
+                    SELECT * FROM staging.dict_tariffs
+                    ON CONFLICT (tariff_id) 
+                    DO UPDATE SET
+                        tariff_name = EXCLUDED.tariff_name, monthly_cost = EXCLUDED.monthly_cost, cashback_percent = EXCLUDED.cashback_percent;
+                
+[2026-02-27T10:18:43.549+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T10:18:43.559+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T10:18:43.566+0000] {sql.py:495} INFO - Running statement: 
+                    INSERT INTO core.dict_tariffs
+                    SELECT * FROM staging.dict_tariffs
+                    ON CONFLICT (tariff_id) 
+                    DO UPDATE SET
+                        tariff_name = EXCLUDED.tariff_name, monthly_cost = EXCLUDED.monthly_cost, cashback_percent = EXCLUDED.cashback_percent;
+                , parameters: None
+[2026-02-27T10:18:43.569+0000] {sql.py:504} INFO - Rows affected: 12
+[2026-02-27T10:18:43.571+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T10:18:43.583+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=transform_dict_tariffs_to_core, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20260227T101843, end_date=20260227T101843
+[2026-02-27T10:18:43.620+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T10:18:43.635+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T10:18:43.667+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T10:18:43.670+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:00:32.253+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:00:32.432+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:32.504+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:32.505+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:00:32.583+0000] {taskinstance.py:2330} INFO - Executing <Task(PostgresOperator): transform_dict_tariffs_to_core> on 2025-01-01 00:00:00+00:00
+[2026-02-27T19:00:32.627+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=32335) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:00:32.631+0000] {standard_task_runner.py:64} INFO - Started process 32346 to run task
+[2026-02-27T19:00:32.669+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'transform_dict_tariffs_to_core', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '1594', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpihw1_t54']
+[2026-02-27T19:00:32.673+0000] {standard_task_runner.py:91} INFO - Job 1594: Subtask transform_dict_tariffs_to_core
+[2026-02-27T19:00:32.831+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.transform_dict_tariffs_to_core scheduled__2025-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:00:33.045+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='transform_dict_tariffs_to_core' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2026-02-27T19:00:33.047+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:00:33.083+0000] {sql.py:282} INFO - Executing: 
+                    INSERT INTO core.dict_tariffs
+                    SELECT * FROM staging.dict_tariffs
+                    ON CONFLICT (tariff_id) 
+                    DO UPDATE SET
+                        tariff_name = EXCLUDED.tariff_name, monthly_cost = EXCLUDED.monthly_cost, cashback_percent = EXCLUDED.cashback_percent;
+                
+[2026-02-27T19:00:33.131+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:00:33.146+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:00:33.159+0000] {sql.py:495} INFO - Running statement: 
+                    INSERT INTO core.dict_tariffs
+                    SELECT * FROM staging.dict_tariffs
+                    ON CONFLICT (tariff_id) 
+                    DO UPDATE SET
+                        tariff_name = EXCLUDED.tariff_name, monthly_cost = EXCLUDED.monthly_cost, cashback_percent = EXCLUDED.cashback_percent;
+                , parameters: None
+[2026-02-27T19:00:33.166+0000] {sql.py:504} INFO - Rows affected: 3
+[2026-02-27T19:00:33.173+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:00:33.196+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=transform_dict_tariffs_to_core, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20260227T190032, end_date=20260227T190033
+[2026-02-27T19:00:33.274+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:00:33.295+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T19:00:33.413+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:00:33.417+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,42 @@
+[2026-02-26T12:07:14.931+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T12:07:14.991+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [queued]>
+[2026-02-26T12:07:15.037+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [queued]>
+[2026-02-26T12:07:15.061+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-26T12:07:15.158+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_postgre_to_s3_accounts> on 2025-09-01 00:00:00+00:00
+[2026-02-26T12:07:15.191+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=4678) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T12:07:15.219+0000] {standard_task_runner.py:64} INFO - Started process 4721 to run task
+[2026-02-26T12:07:15.196+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_postgre_to_s3_accounts', 'scheduled__2025-09-01T00:00:00+00:00', '--job-id', '1053', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh_dict.py', '--cfg-path', '/tmp/tmpjkgbd3cf']
+[2026-02-26T12:07:15.223+0000] {standard_task_runner.py:91} INFO - Job 1053: Subtask upload_postgre_to_s3_accounts
+[2026-02-26T12:07:15.400+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T12:07:15.642+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_postgre_to_s3_accounts' AIRFLOW_CTX_EXECUTION_DATE='2025-09-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-01T00:00:00+00:00'
+[2026-02-26T12:07:15.645+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T12:07:15.733+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-26T12:07:15.759+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:269 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-02-26T12:07:15.791+0000] {logging_mixin.py:188} INFO - В таблице accounts нет данных
+[2026-02-26T12:07:15.792+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-26T12:07:15.795+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T12:07:15.830+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_postgre_to_s3_accounts, run_id=scheduled__2025-09-01T00:00:00+00:00, execution_date=20250901T000000, start_date=20260226T120715, end_date=20260226T120715
+[2026-02-26T12:07:15.920+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-26T12:07:16.003+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T12:07:16.011+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:01:17.905+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:01:17.958+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:01:17.988+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:01:17.995+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:01:18.061+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_postgre_to_s3_accounts> on 2025-09-01 00:00:00+00:00
+[2026-02-27T19:01:18.073+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=32713) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:01:18.074+0000] {standard_task_runner.py:64} INFO - Started process 32737 to run task
+[2026-02-27T19:01:18.085+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_postgre_to_s3_accounts', 'scheduled__2025-09-01T00:00:00+00:00', '--job-id', '1677', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmpb3bsffm1']
+[2026-02-27T19:01:18.100+0000] {standard_task_runner.py:91} INFO - Job 1677: Subtask upload_postgre_to_s3_accounts
+[2026-02-27T19:01:18.351+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_accounts scheduled__2025-09-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:01:18.839+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_postgre_to_s3_accounts' AIRFLOW_CTX_EXECUTION_DATE='2025-09-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-01T00:00:00+00:00'
+[2026-02-27T19:01:18.846+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:01:18.946+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-27T19:01:18.976+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:269 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-02-27T19:01:19.010+0000] {logging_mixin.py:188} INFO - В таблице accounts нет данных
+[2026-02-27T19:01:19.011+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-27T19:01:19.012+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:01:19.064+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_postgre_to_s3_accounts, run_id=scheduled__2025-09-01T00:00:00+00:00, execution_date=20250901T000000, start_date=20260227T190117, end_date=20260227T190119
+[2026-02-27T19:01:19.149+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:01:19.238+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:01:19.243+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

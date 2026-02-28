@@ -1,0 +1,18 @@
+# Секреты и базы
+.env
+airflow.db
+*.sqlite
+
+# Логи Airflow (вот тут мы избавляемся от твоего "спама")
+logs/
+docker/**/logs/
+*.log
+
+# Системное и кэш
+__pycache__/
+.venv/
+.DS_Store
+.ipynb_checkpoints/
+
+# Важно: если хочешь игнорировать конкретную папку с данными
+data/

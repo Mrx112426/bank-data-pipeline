@@ -1,0 +1,52 @@
+[2026-02-26T17:55:50.646+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T17:55:50.723+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:55:50.770+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:55:50.772+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-26T17:55:50.839+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_dict_merchants> on 2025-05-01 00:00:00+00:00
+[2026-02-26T17:55:50.880+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=6873) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T17:55:50.907+0000] {standard_task_runner.py:64} INFO - Started process 6936 to run task
+[2026-02-26T17:55:50.896+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_dict_merchants', 'scheduled__2025-05-01T00:00:00+00:00', '--job-id', '1204', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmp495iw2pg']
+[2026-02-26T17:55:50.930+0000] {standard_task_runner.py:91} INFO - Job 1204: Subtask upload_s3_to_dwh_dict_merchants
+[2026-02-26T17:55:51.210+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T17:55:51.986+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_dict_merchants' AIRFLOW_CTX_EXECUTION_DATE='2025-05-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-01T00:00:00+00:00'
+[2026-02-26T17:55:51.988+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T17:55:52.106+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:55:52.123+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-26T17:55:52.131+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-26T17:55:52.132+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'users'), ('staging', 'accounts'), ('staging', 'transactions'), ('staging', 'dict_merchants'), ('staging', 'dict_mcc'), ('staging', 'cards'), ('staging', 'dict_regions'), ('staging', 'dict_tariffs')]
+[2026-02-26T17:55:52.145+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-26T17:55:52.146+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-26T17:55:54.634+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:55:54.650+0000] {logging_mixin.py:188} INFO - Successfully loaded dict_merchants using copy_expert
+[2026-02-26T17:55:54.653+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-26T17:55:54.655+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T17:55:54.696+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_dict_merchants, run_id=scheduled__2025-05-01T00:00:00+00:00, execution_date=20250501T000000, start_date=20260226T175550, end_date=20260226T175554
+[2026-02-26T17:55:54.849+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-26T17:55:54.935+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T17:55:54.945+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:00:34.551+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:00:34.655+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:34.807+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:34.814+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:00:34.869+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_dict_merchants> on 2025-05-01 00:00:00+00:00
+[2026-02-27T19:00:34.891+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=32338) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:00:34.893+0000] {standard_task_runner.py:64} INFO - Started process 32358 to run task
+[2026-02-27T19:00:34.899+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_dict_merchants', 'scheduled__2025-05-01T00:00:00+00:00', '--job-id', '1603', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmpi8s8e2l1']
+[2026-02-27T19:00:34.904+0000] {standard_task_runner.py:91} INFO - Job 1603: Subtask upload_s3_to_dwh_dict_merchants
+[2026-02-27T19:00:35.117+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_merchants scheduled__2025-05-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:00:35.673+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_dict_merchants' AIRFLOW_CTX_EXECUTION_DATE='2025-05-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-01T00:00:00+00:00'
+[2026-02-27T19:00:35.679+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:00:35.839+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:00:35.868+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-27T19:00:35.908+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-27T19:00:35.928+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'cards'), ('staging', 'users'), ('staging', 'accounts'), ('staging', 'transactions'), ('staging', 'dict_regions'), ('staging', 'dict_tariffs'), ('staging', 'dict_merchants'), ('staging', 'dict_mcc')]
+[2026-02-27T19:00:35.962+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-27T19:00:35.980+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-27T19:00:37.410+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:00:37.439+0000] {logging_mixin.py:188} INFO - Successfully loaded dict_merchants using copy_expert
+[2026-02-27T19:00:37.442+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-27T19:00:37.444+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:00:37.503+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_dict_merchants, run_id=scheduled__2025-05-01T00:00:00+00:00, execution_date=20250501T000000, start_date=20260227T190034, end_date=20260227T190037
+[2026-02-27T19:00:37.628+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:00:37.658+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:00:37.669+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,42 @@
+[2026-02-27T10:33:25.736+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T10:33:25.817+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:25.835+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:25.836+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T10:33:25.911+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_for_cards> on 2026-01-01 00:00:00+00:00
+[2026-02-27T10:33:25.931+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=9693) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T10:33:25.934+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'wait_for_cards', 'scheduled__2026-01-01T00:00:00+00:00', '--job-id', '1497', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmptb0zgndg']
+[2026-02-27T10:33:25.941+0000] {standard_task_runner.py:64} INFO - Started process 9694 to run task
+[2026-02-27T10:33:25.945+0000] {standard_task_runner.py:91} INFO - Job 1497: Subtask wait_for_cards
+[2026-02-27T10:33:26.090+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T10:33:26.265+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='wait_for_cards' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-01T00:00:00+00:00'
+[2026-02-27T10:33:26.267+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T10:33:26.287+0000] {baseoperator.py:400} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-02-27T10:33:26.300+0000] {external_task.py:258} INFO - Poking for tasks ['upload_s3_to_dwh_cards'] in dag oltp_s3_dwh on 2026-01-01T00:00:00+00:00 ... 
+[2026-02-27T10:33:26.304+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-02-27T10:33:26.327+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-02-27T10:33:26.329+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T10:33:26.347+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=wait_for_cards, run_id=scheduled__2026-01-01T00:00:00+00:00, execution_date=20260101T000000, start_date=20260227T103325, end_date=20260227T103326
+[2026-02-27T10:33:26.532+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T10:33:26.557+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:05:22.764+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:05:22.800+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:22.810+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:22.811+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:05:22.826+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_for_cards> on 2026-01-01 00:00:00+00:00
+[2026-02-27T19:05:22.834+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=33756) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:05:22.834+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'wait_for_cards', 'scheduled__2026-01-01T00:00:00+00:00', '--job-id', '1929', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpc16lljhw']
+[2026-02-27T19:05:22.836+0000] {standard_task_runner.py:64} INFO - Started process 33757 to run task
+[2026-02-27T19:05:22.836+0000] {standard_task_runner.py:91} INFO - Job 1929: Subtask wait_for_cards
+[2026-02-27T19:05:22.891+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.wait_for_cards scheduled__2026-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:05:22.988+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='wait_for_cards' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-01T00:00:00+00:00'
+[2026-02-27T19:05:22.990+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:05:23.006+0000] {baseoperator.py:400} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-02-27T19:05:23.016+0000] {external_task.py:258} INFO - Poking for tasks ['upload_s3_to_dwh_cards'] in dag oltp_s3_dwh on 2026-01-01T00:00:00+00:00 ... 
+[2026-02-27T19:05:23.018+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-02-27T19:05:23.030+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-02-27T19:05:23.030+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:05:23.040+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=wait_for_cards, run_id=scheduled__2026-01-01T00:00:00+00:00, execution_date=20260101T000000, start_date=20260227T190522, end_date=20260227T190523
+[2026-02-27T19:05:23.095+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:05:23.107+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T19:05:23.134+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:05:23.145+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

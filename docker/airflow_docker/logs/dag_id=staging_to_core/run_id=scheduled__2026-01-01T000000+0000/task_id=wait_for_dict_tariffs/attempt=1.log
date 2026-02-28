@@ -1,0 +1,44 @@
+[2026-02-27T10:33:16.555+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T10:33:16.591+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:16.601+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T10:33:16.602+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T10:33:16.624+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_for_dict_tariffs> on 2026-01-01 00:00:00+00:00
+[2026-02-27T10:33:16.633+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=9670) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T10:33:16.633+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'wait_for_dict_tariffs', 'scheduled__2026-01-01T00:00:00+00:00', '--job-id', '1489', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpzna5vrx1']
+[2026-02-27T10:33:16.635+0000] {standard_task_runner.py:64} INFO - Started process 9677 to run task
+[2026-02-27T10:33:16.636+0000] {standard_task_runner.py:91} INFO - Job 1489: Subtask wait_for_dict_tariffs
+[2026-02-27T10:33:16.711+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T10:33:16.829+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='wait_for_dict_tariffs' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-01T00:00:00+00:00'
+[2026-02-27T10:33:16.831+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T10:33:16.851+0000] {baseoperator.py:400} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-02-27T10:33:16.864+0000] {external_task.py:258} INFO - Poking for tasks ['upload_s3_to_dwh_dict_tariffs'] in dag oltp_s3_dwh on 2026-01-01T00:00:00+00:00 ... 
+[2026-02-27T10:33:16.868+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-02-27T10:33:16.882+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-02-27T10:33:16.883+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T10:33:16.900+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=wait_for_dict_tariffs, run_id=scheduled__2026-01-01T00:00:00+00:00, execution_date=20260101T000000, start_date=20260227T103316, end_date=20260227T103316
+[2026-02-27T10:33:16.934+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T10:33:16.952+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T10:33:17.009+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T10:33:17.014+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:05:13.875+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:05:13.938+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:13.956+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:05:13.959+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:05:14.004+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_for_dict_tariffs> on 2026-01-01 00:00:00+00:00
+[2026-02-27T19:05:14.013+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=33732) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:05:14.015+0000] {standard_task_runner.py:64} INFO - Started process 33733 to run task
+[2026-02-27T19:05:14.015+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'staging_to_core', 'wait_for_dict_tariffs', 'scheduled__2026-01-01T00:00:00+00:00', '--job-id', '1921', '--raw', '--subdir', 'DAGS_FOLDER/staging_to_core.py', '--cfg-path', '/tmp/tmpusx5qjgg']
+[2026-02-27T19:05:14.019+0000] {standard_task_runner.py:91} INFO - Job 1921: Subtask wait_for_dict_tariffs
+[2026-02-27T19:05:14.115+0000] {task_command.py:426} INFO - Running <TaskInstance: staging_to_core.wait_for_dict_tariffs scheduled__2026-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:05:14.287+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='staging_to_core' AIRFLOW_CTX_TASK_ID='wait_for_dict_tariffs' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-01T00:00:00+00:00'
+[2026-02-27T19:05:14.289+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:05:14.315+0000] {baseoperator.py:400} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-02-27T19:05:14.335+0000] {external_task.py:258} INFO - Poking for tasks ['upload_s3_to_dwh_dict_tariffs'] in dag oltp_s3_dwh on 2026-01-01T00:00:00+00:00 ... 
+[2026-02-27T19:05:14.338+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-02-27T19:05:14.359+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-02-27T19:05:14.360+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:05:14.373+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=staging_to_core, task_id=wait_for_dict_tariffs, run_id=scheduled__2026-01-01T00:00:00+00:00, execution_date=20260101T000000, start_date=20260227T190513, end_date=20260227T190514
+[2026-02-27T19:05:14.435+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:05:14.461+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-02-27T19:05:14.534+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:05:14.539+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

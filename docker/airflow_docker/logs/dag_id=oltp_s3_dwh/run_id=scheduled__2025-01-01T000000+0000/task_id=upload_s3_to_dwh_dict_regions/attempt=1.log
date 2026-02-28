@@ -1,0 +1,50 @@
+[2026-02-26T17:50:18.549+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T17:50:18.605+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:50:18.641+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:50:18.642+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-26T17:50:18.719+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_dict_regions> on 2025-01-01 00:00:00+00:00
+[2026-02-26T17:50:18.747+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=6373) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T17:50:18.754+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_dict_regions', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '1167', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmppc0kfrt6']
+[2026-02-26T17:50:18.770+0000] {standard_task_runner.py:91} INFO - Job 1167: Subtask upload_s3_to_dwh_dict_regions
+[2026-02-26T17:50:18.770+0000] {standard_task_runner.py:64} INFO - Started process 6392 to run task
+[2026-02-26T17:50:18.911+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T17:50:19.213+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_dict_regions' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2026-02-26T17:50:19.216+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T17:50:19.294+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:50:19.315+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-26T17:50:19.325+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-26T17:50:19.329+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'dict_mcc'), ('staging', 'dict_merchants'), ('staging', 'cards'), ('staging', 'dict_tariffs'), ('staging', 'transactions'), ('staging', 'dict_regions'), ('staging', 'users'), ('staging', 'accounts')]
+[2026-02-26T17:50:19.352+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-26T17:50:19.353+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-26T17:50:19.813+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:50:19.833+0000] {logging_mixin.py:188} INFO - Successfully loaded dict_regions using copy_expert
+[2026-02-26T17:50:19.839+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-26T17:50:19.840+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T17:50:19.855+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_dict_regions, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20260226T175018, end_date=20260226T175019
+[2026-02-26T17:50:19.938+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-26T17:50:19.954+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T18:59:05.455+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T18:59:05.524+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T18:59:05.558+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-27T18:59:05.558+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T18:59:05.584+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_dict_regions> on 2025-01-01 00:00:00+00:00
+[2026-02-27T18:59:05.620+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=31814) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T18:59:05.622+0000] {standard_task_runner.py:64} INFO - Started process 31827 to run task
+[2026-02-27T18:59:05.634+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_dict_regions', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '1516', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmp9dt8kgqy']
+[2026-02-27T18:59:05.655+0000] {standard_task_runner.py:91} INFO - Job 1516: Subtask upload_s3_to_dwh_dict_regions
+[2026-02-27T18:59:05.825+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_regions scheduled__2025-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T18:59:06.204+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_dict_regions' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2026-02-27T18:59:06.206+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T18:59:06.252+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T18:59:06.261+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-27T18:59:06.277+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-27T18:59:06.279+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'transactions'), ('staging', 'cards'), ('staging', 'dict_merchants'), ('staging', 'dict_mcc'), ('staging', 'accounts'), ('staging', 'dict_tariffs'), ('staging', 'users'), ('staging', 'dict_regions')]
+[2026-02-27T18:59:06.293+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-27T18:59:06.294+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-27T18:59:06.999+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T18:59:07.017+0000] {logging_mixin.py:188} INFO - Successfully loaded dict_regions using copy_expert
+[2026-02-27T18:59:07.019+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-27T18:59:07.021+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T18:59:07.035+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_dict_regions, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20260227T185905, end_date=20260227T185907
+[2026-02-27T18:59:07.096+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T18:59:07.113+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

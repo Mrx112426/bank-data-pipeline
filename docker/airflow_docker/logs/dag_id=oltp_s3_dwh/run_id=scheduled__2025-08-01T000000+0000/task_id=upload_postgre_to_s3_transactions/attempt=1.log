@@ -1,0 +1,42 @@
+[2026-02-26T11:51:08.222+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T11:51:08.251+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [queued]>
+[2026-02-26T11:51:08.273+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [queued]>
+[2026-02-26T11:51:08.276+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-26T11:51:08.328+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_postgre_to_s3_transactions> on 2025-08-01 00:00:00+00:00
+[2026-02-26T11:51:08.343+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=3149) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T11:51:08.353+0000] {standard_task_runner.py:64} INFO - Started process 3161 to run task
+[2026-02-26T11:51:08.355+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_postgre_to_s3_transactions', 'scheduled__2025-08-01T00:00:00+00:00', '--job-id', '946', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh_dict.py', '--cfg-path', '/tmp/tmp_7v7i52g']
+[2026-02-26T11:51:08.363+0000] {standard_task_runner.py:91} INFO - Job 946: Subtask upload_postgre_to_s3_transactions
+[2026-02-26T11:51:08.557+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T11:51:08.830+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_postgre_to_s3_transactions' AIRFLOW_CTX_EXECUTION_DATE='2025-08-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-08-01T00:00:00+00:00'
+[2026-02-26T11:51:08.832+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T11:51:08.881+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-26T11:51:08.930+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:269 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-02-26T11:51:09.263+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-26T11:51:09.264+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-26T11:51:09.674+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-26T11:51:09.675+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T11:51:09.692+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_postgre_to_s3_transactions, run_id=scheduled__2025-08-01T00:00:00+00:00, execution_date=20250801T000000, start_date=20260226T115108, end_date=20260226T115109
+[2026-02-26T11:51:09.748+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-26T11:51:09.760+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:01:06.111+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:01:06.171+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:01:06.233+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:01:06.237+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:01:06.298+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_postgre_to_s3_transactions> on 2025-08-01 00:00:00+00:00
+[2026-02-27T19:01:06.343+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=32609) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:01:06.346+0000] {standard_task_runner.py:64} INFO - Started process 32627 to run task
+[2026-02-27T19:01:06.332+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_postgre_to_s3_transactions', 'scheduled__2025-08-01T00:00:00+00:00', '--job-id', '1651', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmpuf3nd95s']
+[2026-02-27T19:01:06.357+0000] {standard_task_runner.py:91} INFO - Job 1651: Subtask upload_postgre_to_s3_transactions
+[2026-02-27T19:01:06.658+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_transactions scheduled__2025-08-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:01:07.194+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_postgre_to_s3_transactions' AIRFLOW_CTX_EXECUTION_DATE='2025-08-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-08-01T00:00:00+00:00'
+[2026-02-27T19:01:07.201+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:01:07.321+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-27T19:01:07.388+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:269 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-02-27T19:01:07.518+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-27T19:01:07.520+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-27T19:01:08.441+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-27T19:01:08.443+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:01:08.460+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_postgre_to_s3_transactions, run_id=scheduled__2025-08-01T00:00:00+00:00, execution_date=20250801T000000, start_date=20260227T190106, end_date=20260227T190108
+[2026-02-27T19:01:08.630+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:01:08.670+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

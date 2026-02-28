@@ -1,0 +1,50 @@
+[2026-02-26T17:55:35.528+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T17:55:35.582+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:55:35.629+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [queued]>
+[2026-02-26T17:55:35.640+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-26T17:55:35.712+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_users> on 2025-03-01 00:00:00+00:00
+[2026-02-26T17:55:35.761+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_users', 'scheduled__2025-03-01T00:00:00+00:00', '--job-id', '1179', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmphrajmbtb']
+[2026-02-26T17:55:35.748+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=6728) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T17:55:35.802+0000] {standard_task_runner.py:91} INFO - Job 1179: Subtask upload_s3_to_dwh_users
+[2026-02-26T17:55:35.803+0000] {standard_task_runner.py:64} INFO - Started process 6765 to run task
+[2026-02-26T17:55:36.043+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T17:55:36.732+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_users' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T00:00:00+00:00'
+[2026-02-26T17:55:36.735+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T17:55:36.822+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:55:36.852+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-26T17:55:36.872+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-26T17:55:36.875+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'users'), ('staging', 'accounts'), ('staging', 'dict_mcc'), ('staging', 'dict_tariffs'), ('staging', 'dict_merchants'), ('staging', 'transactions'), ('staging', 'dict_regions'), ('staging', 'cards')]
+[2026-02-26T17:55:36.932+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-26T17:55:36.956+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-26T17:55:39.580+0000] {logging_mixin.py:188} INFO - Файл raw/not_dict/users/2025-03-01/data.parquet не найден в S3. Пропускаем загрузку.
+[2026-02-26T17:55:39.587+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-26T17:55:39.598+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T17:55:39.612+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_users, run_id=scheduled__2025-03-01T00:00:00+00:00, execution_date=20250301T000000, start_date=20260226T175535, end_date=20260226T175539
+[2026-02-26T17:55:39.821+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-26T17:55:39.903+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T17:55:39.924+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-02-27T19:00:10.038+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-27T19:00:10.084+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:10.114+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [queued]>
+[2026-02-27T19:00:10.116+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-27T19:00:10.158+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_users> on 2025-03-01 00:00:00+00:00
+[2026-02-27T19:00:10.172+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=32134) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-27T19:00:10.182+0000] {standard_task_runner.py:64} INFO - Started process 32153 to run task
+[2026-02-27T19:00:10.186+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_users', 'scheduled__2025-03-01T00:00:00+00:00', '--job-id', '1563', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmp_hb3ybso']
+[2026-02-27T19:00:10.205+0000] {standard_task_runner.py:91} INFO - Job 1563: Subtask upload_s3_to_dwh_users
+[2026-02-27T19:00:10.306+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_users scheduled__2025-03-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-27T19:00:10.570+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_users' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T00:00:00+00:00'
+[2026-02-27T19:00:10.573+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-27T19:00:10.652+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-27T19:00:10.660+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-27T19:00:10.674+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-27T19:00:10.683+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'transactions'), ('staging', 'cards'), ('staging', 'users'), ('staging', 'accounts'), ('staging', 'dict_merchants'), ('staging', 'dict_tariffs'), ('staging', 'dict_regions'), ('staging', 'dict_mcc')]
+[2026-02-27T19:00:10.698+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-27T19:00:10.699+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-27T19:00:11.768+0000] {logging_mixin.py:188} INFO - Файл raw/not_dict/users/2025-03-01/data.parquet не найден в S3. Пропускаем загрузку.
+[2026-02-27T19:00:11.784+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-27T19:00:11.786+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-27T19:00:11.818+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_users, run_id=scheduled__2025-03-01T00:00:00+00:00, execution_date=20250301T000000, start_date=20260227T190010, end_date=20260227T190011
+[2026-02-27T19:00:11.989+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-27T19:00:12.051+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T19:00:12.056+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,48 @@
+[2026-02-26T17:36:08.067+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-26T17:36:08.124+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_mcc manual__2026-02-26T12:02:57.810764+00:00 [queued]>
+[2026-02-26T17:36:08.176+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_mcc manual__2026-02-26T12:02:57.810764+00:00 [queued]>
+[2026-02-26T17:36:08.178+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2026-02-26T17:36:08.247+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_s3_to_dwh_dict_mcc> on 2026-02-26 12:02:57.810764+00:00
+[2026-02-26T17:36:08.279+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=5296) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-26T17:36:08.298+0000] {standard_task_runner.py:64} INFO - Started process 5327 to run task
+[2026-02-26T17:36:08.289+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_s3_to_dwh_dict_mcc', 'manual__2026-02-26T12:02:57.810764+00:00', '--job-id', '1137', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmpj4aybjd6']
+[2026-02-26T17:36:08.309+0000] {standard_task_runner.py:91} INFO - Job 1137: Subtask upload_s3_to_dwh_dict_mcc
+[2026-02-26T17:36:08.506+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_s3_to_dwh_dict_mcc manual__2026-02-26T12:02:57.810764+00:00 [running]> on host 31b45edbecf3
+[2026-02-26T17:36:08.762+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_s3_to_dwh_dict_mcc' AIRFLOW_CTX_EXECUTION_DATE='2026-02-26T12:02:57.810764+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-26T12:02:57.810764+00:00'
+[2026-02-26T17:36:08.772+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-26T17:36:08.813+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:36:08.825+0000] {sql.py:495} INFO - Running statement: SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';, parameters: None
+[2026-02-26T17:36:08.834+0000] {sql.py:504} INFO - Rows affected: 9
+[2026-02-26T17:36:08.836+0000] {logging_mixin.py:188} INFO - DEBUG: Доступные таблицы в схеме staging: [('staging', 'exchange_rates'), ('staging', 'dict_mcc'), ('staging', 'transactions'), ('staging', 'dict_merchants'), ('staging', 'dict_tariffs'), ('staging', 'dict_regions'), ('staging', 'cards'), ('staging', 'accounts'), ('staging', 'users')]
+[2026-02-26T17:36:08.865+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-26T17:36:08.867+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-26T17:36:09.352+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:36:09.364+0000] {sql.py:495} INFO - Running statement: Truncate table staging.dict_mcc, parameters: None
+[2026-02-26T17:36:09.385+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-26T17:36:09.394+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-26T17:36:09.396+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/oltp_s3_dwh.py", line 85, in upload_s3_to_dwh
+    cursor.copy_from(output, f"staging.{table_name}", sep='\t', null="")
+psycopg2.errors.UndefinedTable: relation "staging.dict_mcc" does not exist
+
+[2026-02-26T17:36:09.417+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=oltp_s3_dwh, task_id=upload_s3_to_dwh_dict_mcc, run_id=manual__2026-02-26T12:02:57.810764+00:00, execution_date=20260226T120257, start_date=20260226T173608, end_date=20260226T173609
+[2026-02-26T17:36:09.444+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1137 for task upload_s3_to_dwh_dict_mcc (relation "staging.dict_mcc" does not exist
+; 5327)
+[2026-02-26T17:36:09.495+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-02-26T17:36:09.511+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,21 @@
+[2026-02-20T12:35:23.550+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-20T12:35:23.571+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_cb_courses.load_to_postgres scheduled__2025-11-11T00:00:00+00:00 [queued]>
+[2026-02-20T12:35:23.589+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_cb_courses.load_to_postgres scheduled__2025-11-11T00:00:00+00:00 [queued]>
+[2026-02-20T12:35:23.590+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-20T12:35:23.635+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_to_postgres> on 2025-11-11 00:00:00+00:00
+[2026-02-20T12:35:23.648+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=8273) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-20T12:35:23.651+0000] {standard_task_runner.py:64} INFO - Started process 8281 to run task
+[2026-02-20T12:35:23.655+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'load_cb_courses', 'load_to_postgres', 'scheduled__2025-11-11T00:00:00+00:00', '--job-id', '636', '--raw', '--subdir', 'DAGS_FOLDER/api_cb.py', '--cfg-path', '/tmp/tmp_putxbmu']
+[2026-02-20T12:35:23.659+0000] {standard_task_runner.py:91} INFO - Job 636: Subtask load_to_postgres
+[2026-02-20T12:35:23.740+0000] {task_command.py:426} INFO - Running <TaskInstance: load_cb_courses.load_to_postgres scheduled__2025-11-11T00:00:00+00:00 [running]> on host 78aa58ce5a8d
+[2026-02-20T12:35:23.864+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Umar Mazoriev' AIRFLOW_CTX_DAG_ID='load_cb_courses' AIRFLOW_CTX_TASK_ID='load_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2025-11-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-11T00:00:00+00:00'
+[2026-02-20T12:35:23.867+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-20T12:35:23.924+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-20T12:35:23.925+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and password.
+[2026-02-20T12:35:24.108+0000] {base.py:84} INFO - Using connection ID 'postgres_dwh' for task execution.
+[2026-02-20T12:35:24.144+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-20T12:35:24.145+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-20T12:35:24.161+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=load_cb_courses, task_id=load_to_postgres, run_id=scheduled__2025-11-11T00:00:00+00:00, execution_date=20251111T000000, start_date=20260220T123523, end_date=20260220T123524
+[2026-02-20T12:35:24.192+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-20T12:35:24.213+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-20T12:35:24.217+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

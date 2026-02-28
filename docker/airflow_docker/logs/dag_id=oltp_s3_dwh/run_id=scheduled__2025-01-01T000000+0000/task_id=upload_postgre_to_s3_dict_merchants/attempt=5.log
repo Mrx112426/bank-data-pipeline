@@ -1,0 +1,27 @@
+[2026-02-28T11:47:24.594+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-28T11:47:24.684+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_dict_merchants scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-28T11:47:24.737+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_dict_merchants scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2026-02-28T11:47:24.740+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 5
+[2026-02-28T11:47:24.827+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_postgre_to_s3_dict_merchants> on 2025-01-01 00:00:00+00:00
+[2026-02-28T11:47:24.840+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=9419) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-28T11:47:24.842+0000] {standard_task_runner.py:64} INFO - Started process 9441 to run task
+[2026-02-28T11:47:24.853+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'oltp_s3_dwh', 'upload_postgre_to_s3_dict_merchants', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '2074', '--raw', '--subdir', 'DAGS_FOLDER/oltp_s3_dwh.py', '--cfg-path', '/tmp/tmpbrg3iltg']
+[2026-02-28T11:47:24.864+0000] {standard_task_runner.py:91} INFO - Job 2074: Subtask upload_postgre_to_s3_dict_merchants
+[2026-02-28T11:47:25.046+0000] {task_command.py:426} INFO - Running <TaskInstance: oltp_s3_dwh.upload_postgre_to_s3_dict_merchants scheduled__2025-01-01T00:00:00+00:00 [running]> on host 31b45edbecf3
+[2026-02-28T11:47:25.436+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='oltp_s3_dwh' AIRFLOW_CTX_TASK_ID='upload_postgre_to_s3_dict_merchants' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2026-02-28T11:47:25.445+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-28T11:47:25.504+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-28T11:47:25.507+0000] {logging_mixin.py:188} INFO - DEBUG: Host: postgres_oltp
+[2026-02-28T11:47:25.511+0000] {logging_mixin.py:188} INFO - DEBUG: DB Name: oltp_db
+[2026-02-28T11:47:25.515+0000] {logging_mixin.py:188} INFO - DEBUG: Генерируемый SQL-запрос: select * from dict_merchants
+[2026-02-28T11:47:25.539+0000] {base.py:84} INFO - Using connection ID 'postgres_oltp' for task execution.
+[2026-02-28T11:47:25.555+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:269 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2026-02-28T11:47:25.664+0000] {base.py:84} INFO - Using connection ID 'minio_conn_id' for task execution.
+[2026-02-28T11:47:25.669+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_conn_id', conn_type='aws') credentials retrieved from login and ***.
+[2026-02-28T11:47:26.339+0000] {logging_mixin.py:188} INFO - За 2025-01-01 в S3 загружено - 100 строк
+[2026-02-28T11:47:26.341+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-28T11:47:26.341+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-28T11:47:26.353+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=oltp_s3_dwh, task_id=upload_postgre_to_s3_dict_merchants, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20260228T114724, end_date=20260228T114726
+[2026-02-28T11:47:26.391+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-28T11:47:26.436+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T11:47:26.451+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
