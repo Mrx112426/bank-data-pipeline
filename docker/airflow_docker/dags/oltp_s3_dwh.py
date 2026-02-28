@@ -24,7 +24,7 @@ def upload_to_s3(table_name, date_column, ds, **kwargs):
 
     # 1. Формирование sql запроса
     if date_column:
-        sql_query = f"select * from {table_name} where date_trunc('month', {date_column} AT TIME ZONE 'UTC') = date_trunc('month','{ds}'::date AT TIME ZONE 'UTC')"
+        sql_query = f"select * from {table_name} where date_trunc('month', {date_column} AT TIME ZONE 'Europe/Moscow') = date_trunc('month','{ds}'::date AT TIME ZONE 'Europe/Moscow')"
         s3_path = f"raw/not_dict/{table_name}/{ds}/data.parquet"
     else:
         sql_query = f"select * from {table_name}"
@@ -55,65 +55,63 @@ def upload_to_s3(table_name, date_column, ds, **kwargs):
 
     print(f'За {ds} в S3 загружено - {df.shape[0]} строк')
 
-def upload_s3_to_dwh(
-        table_name,
-        date_column,
-        ds,
-        **kwargs
-):
+
+def upload_s3_to_dwh(table_name, date_column, ds, **kwargs):
     dwh_postgre_hook = PostgresHook(postgres_conn_id='postgres_dwh')
     s3_hook = S3Hook(aws_conn_id='minio_conn_id')
     bucket_name = 'bank-analytics-lake'
 
-    check_sql = "SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema = 'staging';"
-    existing_tables = dwh_postgre_hook.get_records(check_sql)
-    print(f"DEBUG: Доступные таблицы в схеме staging: {existing_tables}")
-
+    # Определяем путь
     if date_column:
         s3_path = f"raw/not_dict/{table_name}/{ds}/data.parquet"
     else:
         s3_path = f"raw/dicts/{table_name}/snapshots_{ds}.parquet"
 
     if not s3_hook.check_for_key(s3_path, bucket_name):
-        print(f"Файл {s3_path} не найден в S3. Пропускаем загрузку.")
-        return  # Завершаем функцию без ошибки
+        print(f"Файл {s3_path} не найден. Пропускаем.")
+        return
 
-    # Чтение файла из s3
+    # Чтение из S3
     file_from_s3 = s3_hook.get_key(s3_path, bucket_name)
     data = file_from_s3.get()['Body'].read()
     df = pd.read_parquet(io.BytesIO(data))
-    print(f'За {ds} из s3 выгружено {df.shape[0]} строк')
 
-    #
+    # Подготовка данных для COPY (табуляция)
     output = io.StringIO()
-    df.to_csv(output, sep ='\t', index=False, header=False)
+    df.to_csv(output, sep='\t', index=False, header=False)
     output.seek(0)
 
-    # Работа с базой данных
     conn = dwh_postgre_hook.get_conn()
     cursor = conn.cursor()
 
     try:
         cursor.execute("SET search_path TO staging;")
-        cursor.execute(f"TRUNCATE TABLE {table_name};")
 
-        # Получаем список колонок из DataFrame (они совпадут с именами в БД)
+        # --- ЛОГИКА ОЧИСТКИ ---
+        if not date_column:
+            # Справочники: полностью перезаписываем
+            cursor.execute(f"TRUNCATE TABLE {table_name};")
+            print(f"TRUNCATE для справочника {table_name}")
+        else:
+            # Факты: удаляем только данные за текущий месяц (чтобы перегрузить их)
+            # Это делает задачу идемпотентной (можно перезапускать без дублей)
+            cursor.execute(f"""
+                DELETE FROM {table_name} 
+                WHERE date_trunc('month', {date_column}::date) = date_trunc('month', '{ds}'::date);
+            """)
+            print(f"DELETE среза данных для {table_name} за {ds}")
+        # ----------------------
+
         columns = ", ".join(df.columns)
-
-        # Используем copy_expert вместо copy_from
-        # Это аналог консольной команды COPY ... (col1, col2) FROM STDIN
         sql = f"COPY {table_name} ({columns}) FROM STDIN WITH CSV DELIMITER '\t' NULL ''"
-
-        output.seek(0)
         cursor.copy_expert(sql, output)
 
         conn.commit()
-        print(f"Successfully loaded {table_name} using copy_expert")
+        print(f"Successfully loaded {table_name}")
 
     except Exception as e:
         conn.rollback()
-        print(f"Error during loading to DWH: {e}")
-        raise e  # Пробрасываем ошибку, чтобы таска в Airflow стала красной
+        raise e
     finally:
         cursor.close()
         conn.close()
@@ -133,9 +131,9 @@ with DAG (
         ('transactions', 'transaction_time'),
         ('dict_merchants', None),
         ('dict_mcc', None),
-        ('cards', 'created_at'),
-        ('accounts', 'opened_at'),
-        ('users', 'registration_date'),
+        ('cards', None),
+        ('accounts', None),
+        ('users', None),
         ('dict_tariffs', None),
         ('dict_regions', None)
     ]
