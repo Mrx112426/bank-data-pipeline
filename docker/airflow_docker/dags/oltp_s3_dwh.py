@@ -7,7 +7,6 @@ from datetime import datetime
 import io
 import pandas as pd
 
-
 def upload_to_s3(table_name, date_column, ds, **kwargs):
     '''
     :param table_name: Название таблицы источника
@@ -24,7 +23,7 @@ def upload_to_s3(table_name, date_column, ds, **kwargs):
 
     # 1. Формирование sql запроса
     if date_column:
-        sql_query = f"select * from {table_name} where date_trunc('month', {date_column} AT TIME ZONE 'Europe/Moscow') = date_trunc('month','{ds}'::date AT TIME ZONE 'Europe/Moscow')"
+        sql_query = f"select * from {table_name} where date_trunc('month', {date_column}::timestamptz) = date_trunc('month','{ds}'::timestamptz)"
         s3_path = f"raw/not_dict/{table_name}/{ds}/data.parquet"
     else:
         sql_query = f"select * from {table_name}"
@@ -97,7 +96,7 @@ def upload_s3_to_dwh(table_name, date_column, ds, **kwargs):
             # Это делает задачу идемпотентной (можно перезапускать без дублей)
             cursor.execute(f"""
                 DELETE FROM {table_name} 
-                WHERE date_trunc('month', {date_column}::date) = date_trunc('month', '{ds}'::date);
+                WHERE date_trunc('month', {date_column}::timestamptz) = date_trunc('month', '{ds}'::timestamptz);
             """)
             print(f"DELETE среза данных для {table_name} за {ds}")
         # ----------------------
