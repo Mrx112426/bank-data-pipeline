@@ -21,13 +21,17 @@ def upload_to_s3(table_name, date_column, ds, **kwargs):
     print(f"DEBUG: Host: {conn_info.host}")
     print(f"DEBUG: DB Name: {conn_info.schema}")
 
+    dt = datetime.strptime(ds, '%Y-%m-%d')
+    year = dt.strftime('%Y')
+    month = dt.strftime('%m')
+
     # 1. Формирование sql запроса
     if date_column:
-        sql_query = f"select * from {table_name} where date_trunc('month', {date_column}::timestamptz) = date_trunc('month','{ds}'::timestamptz)"
-        s3_path = f"raw/not_dict/{table_name}/{ds}/data.parquet"
+        sql_query = f"select * from {table_name} where date_trunc('day', {date_column}::timestamptz) = date_trunc('day','{ds}'::timestamptz)"
+        s3_path = f"raw/not_dict/{table_name}/{year}/{month}/{ds}.parquet"
     else:
         sql_query = f"select * from {table_name}"
-        s3_path = f"raw/dicts/{table_name}/snapshots_{ds}.parquet"
+        s3_path = f"raw/dicts/{table_name}/snapshot_{ds}.parquet"
 
     # ДОБАВЬ ЭТУ СТРОКУ
     print(f"DEBUG: Генерируемый SQL-запрос: {sql_query}")
@@ -60,11 +64,15 @@ def upload_s3_to_dwh(table_name, date_column, ds, **kwargs):
     s3_hook = S3Hook(aws_conn_id='minio_conn_id')
     bucket_name = 'bank-analytics-lake'
 
+    dt = datetime.strptime(ds, '%Y-%m-%d')
+    year = dt.strftime('%Y')
+    month = dt.strftime('%m')
+
     # Определяем путь
     if date_column:
-        s3_path = f"raw/not_dict/{table_name}/{ds}/data.parquet"
+        s3_path = f"raw/not_dict/{table_name}/{year}/{month}/{ds}.parquet"
     else:
-        s3_path = f"raw/dicts/{table_name}/snapshots_{ds}.parquet"
+        s3_path = f"raw/dicts/{table_name}/snapshot_{ds}.parquet"
 
     if not s3_hook.check_for_key(s3_path, bucket_name):
         print(f"Файл {s3_path} не найден. Пропускаем.")
@@ -96,7 +104,7 @@ def upload_s3_to_dwh(table_name, date_column, ds, **kwargs):
             # Это делает задачу идемпотентной (можно перезапускать без дублей)
             cursor.execute(f"""
                 DELETE FROM {table_name} 
-                WHERE date_trunc('month', {date_column}::timestamptz) = date_trunc('month', '{ds}'::timestamptz);
+                WHERE date_trunc('day', {date_column}::timestamptz) = date_trunc('day', '{ds}'::timestamptz);
             """)
             print(f"DELETE среза данных для {table_name} за {ds}")
         # ----------------------
@@ -122,19 +130,20 @@ def_args = {
 with DAG (
     dag_id = 'oltp_s3_dwh',
     start_date = datetime(2025, 1, 1),
-    schedule_interval='@monthly',
+    schedule_interval='@daily',
     catchup = True,
     max_active_runs = 1
 ) as dag:
     tables = [
-        ('transactions', 'transaction_time'),
-        ('dict_merchants', None),
-        ('dict_mcc', None),
-        ('cards', None),
+        ('transactions', 'created_at'),
         ('accounts', None),
-        ('users', None),
-        ('dict_tariffs', None),
-        ('dict_regions', None)
+        ('branches', None),
+        ('counterparties', None),
+        ('currencies', None),
+        ('customers', None),
+        ('operation_types', None),
+        ('customer_products', None),
+        ('products', None)
     ]
     start = EmptyOperator(task_id=f'start')
     end = EmptyOperator(task_id=f'end')
