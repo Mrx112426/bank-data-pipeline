@@ -3,7 +3,8 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.operators.empty import EmptyOperator
-from datetime import datetime
+from airflow.sensors.external_task import ExternalTaskSensor
+from datetime import datetime, timedelta
 import io
 import pandas as pd
 
@@ -148,6 +149,14 @@ with DAG (
     ]
     start = EmptyOperator(task_id=f'start')
     end = EmptyOperator(task_id=f'end')
+    wait_for_upstream = ExternalTaskSensor(
+        task_id='wait_for_ingest_dag',
+        external_dag_id='generate_oltp_data_daily',  # ID первого дага
+        external_task_id='end',  # ID конкретной задачи (опционально)
+        allowed_states=['success'],
+        execution_delta=timedelta(hours=0),  # Ждем запуск за то же время
+        timeout=600  # Ждем максимум 10 минут
+    )
     for table_name, column_date in tables:
         upload_postgre_to_s3_task = PythonOperator(
             task_id = f'upload_postgre_to_s3_{table_name}',
@@ -170,4 +179,4 @@ with DAG (
         )
 
 
-        start >> upload_postgre_to_s3_task >> upload_s3_to_dwh_task >> end
+        start >> wait_for_upstream >> upload_postgre_to_s3_task >> upload_s3_to_dwh_task >> end
