@@ -143,7 +143,8 @@ with DAG (
         ('customers', None),
         ('operation_types', None),
         ('customer_products', None),
-        ('products', None)
+        ('products', None),
+        ('categories', None)
     ]
     start = EmptyOperator(task_id=f'start')
     end = EmptyOperator(task_id=f'end')
