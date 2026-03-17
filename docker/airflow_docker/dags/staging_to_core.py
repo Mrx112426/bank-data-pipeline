@@ -19,7 +19,7 @@ default_args = {
     'owner': 'Mazoriev Umar',
     'on_failure_callback': on_failure_callback,
     'retries': 1,
-    'retry_delay': timedelta(minutes=5)
+    'retry_delay': timedelta(minutes=1)
 }
 
 with DAG(
@@ -70,7 +70,9 @@ with DAG(
 
 
     def create_load_tier(table_name, pk, update_cols, date_col):
-        if date_col:
+        if table_name == 'exchange_rates':
+            s3_path = "raw/cbr/rates_{{ ds }}.csv"
+        elif date_col:
             # Для фактов
             s3_path = (
                 f"raw/not_dict/{table_name}/"
@@ -104,6 +106,14 @@ with DAG(
 
     start = EmptyOperator(task_id='start')
     end = EmptyOperator(task_id='end')
+
+
+    with TaskGroup("exchange_rates") as er_valute:
+        table = 'exchange_rates'
+        pk = 'exchange_rates_id'
+        cols = ['currency_code', 'rate_value', 'rate_date']
+        d_col = 'rate_date'
+        create_load_tier(table, pk, cols, d_col)
 
     with TaskGroup("layer_1_independent_dicts") as tg1:
         dicts_1 = [
@@ -161,4 +171,4 @@ with DAG(
                          'created_at')
 
     # Связываем всё вместе
-    start >> debug_task >> [tg1, tg2, tg3, tg4] >> end
+    start >> debug_task >> [er_valute, tg1, tg2, tg3, tg4] >> end
