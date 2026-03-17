@@ -35,7 +35,7 @@ def fill_reference_data(conn):
 
         print("Заполняем справочники...")
         bulk_copy(cur, 'currencies', ('currency_code', 'name'),
-                  [('RUB', 'Рубль'), ('USD', 'Доллар'), ('EUR', 'Евро')])
+                  [('RUB', 'Рубль'), ('USD', 'Доллар'), ('EUR', 'Евро'), ('CNY', 'Юань')])
         bulk_copy(cur, 'categories', ('category_name',),
                   [('Продукты',), ('Кафе',), ('Электроника',), ('Транспорт',), ('ЖКХ',)])
         bulk_copy(cur, 'operation_types', ('operation_name',),
@@ -63,7 +63,7 @@ def generate_data_func(ds, **kwargs):
     try:
         with conn.cursor() as cur:
             # 1. Справочники
-            fill_reference_data(conn)
+            #fill_reference_data(conn)
 
             # 2. Идемпотентность: удаляем данные за этот день перед вставкой
             cur.execute("DELETE FROM transactions WHERE transaction_date::date = %s", (target_date.date(),))
@@ -83,6 +83,7 @@ def generate_data_func(ds, **kwargs):
             # --- Логика новых клиентов ---
             num_new_customers = random.randint(30, 60)
             new_cust_prods = []
+            available_currencies = ['RUB', 'USD', 'EUR', 'CNY']
             for _ in range(num_new_customers):
                 first, last = fake.first_name(), fake.last_name()
                 birth = fake.date_of_birth(minimum_age=18, maximum_age=70)
@@ -96,10 +97,13 @@ def generate_data_func(ds, **kwargs):
                 prod_id, prod_type = random.choice(all_products)
                 acc_type = 'Кредитный' if 'Кредитная' in prod_type else 'Текущий'
 
+                # ВЫБИРАЕМ ВАЛЮТУ (например, 80% RUB, остальные — валюта)
+                currency = random.choices(available_currencies, weights=[70, 10, 10, 10], k=1)[0]
+
                 cur.execute("""
                     INSERT INTO accounts (customer_id, account_number, currency_code, balance, account_type, opened_at) 
-                    VALUES (%s, %s, 'RUB', %s, %s, %s)
-                """, (c_id, acc_num, round(random.uniform(5000, 100000), 2), acc_type, target_date))
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, (c_id, acc_num, currency, round(random.uniform(5000, 100000), 2), acc_type, target_date))
                 new_cust_prods.append([c_id, prod_id, target_date.date(), 'NULL'])
 
             bulk_copy(cur, 'customer_products', ('customer_id', 'product_id', 'start_date', 'end_date'), new_cust_prods)
