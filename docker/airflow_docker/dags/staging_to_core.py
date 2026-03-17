@@ -122,8 +122,8 @@ with DAG(
 
     with TaskGroup("layer_3_accounts_and_products") as tg3:
         create_load_tier('accounts', 'account_id',
-                         ['customer_id', 'account_number', 'currency_code', 'balance', 'account_type', 'status',
-                          'closed_at'], None)
+                         ['customer_id', 'account_number', 'currency_code', 'balance',  'account_type', 'status',
+                          'opened_at', 'closed_at'], None)
 
         cp_table = 'customer_products'
 
