@@ -14,7 +14,7 @@ x-airflow-common:
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__TEST_CONNECTION: 'Enabled'
-    _PIP_ADDITIONAL_REQUIREMENTS: 'pandas openpyxl psycopg2-binary clickhouse-driver faker'
+    _PIP_ADDITIONAL_REQUIREMENTS: 'pandas openpyxl psycopg2-binary clickhouse-driver clickhouse-cityhash faker airflow-clickhouse-plugin'
     # Подключение к MinIO
     AIRFLOW_CONN_MINIO_DEFAULT: >-
       aws://minioadmin:minioadmin@minio:9000?
@@ -66,6 +66,8 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=oltp_db
+    volumes:
+      - oltp-data:/var/lib/postgresql/data
     ports:
       - "5433:5432" # Снаружи 5433
 
@@ -77,6 +79,8 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=dwh_db
+    volumes:
+      - dwh-data:/var/lib/postgresql/data
     ports:
       - "5434:5432" # Снаружи 5434
 
@@ -143,6 +147,8 @@ volumes:
   minio-data:
   clickhouse-data:
   clickhouse-logs:
+  oltp-data: # Добавить эту строку
+  dwh-data:  # Добавить эту строку
 
 networks:
   default:
