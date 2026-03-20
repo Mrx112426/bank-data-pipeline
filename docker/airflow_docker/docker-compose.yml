@@ -14,7 +14,16 @@ x-airflow-common:
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__TEST_CONNECTION: 'Enabled'
-    _PIP_ADDITIONAL_REQUIREMENTS: 'pandas openpyxl psycopg2-binary clickhouse-driver clickhouse-cityhash faker airflow-clickhouse-plugin'
+    # 1. ВКЛЮЧАЕМ КНОПКУ "Trigger w/ config" (даже если в DAG нет параметров)
+    AIRFLOW__WEBSERVER__SHOW_TRIGGER_FORM_IF_NO_PARAMS: 'True'
+    
+    # 2. ДОБАВЛЯЕМ ПАКЕТ ДЛЯ CLICKHOUSE (проверь, чтобы он был в списке)
+    _PIP_ADDITIONAL_REQUIREMENTS: 'pandas openpyxl psycopg2-binary clickhouse-driver clickhouse-cityhash faker airflow-clickhouse-plugin clickhouse_connect'
+
+    # 3. ПОДКЛЮЧЕНИЕ К CLICKHOUSE (автоматическое создание Connection)
+    # Формат: clickhouse://user:password@host:port/database
+    AIRFLOW_CONN_CLICKHOUSE_DEFAULT: 'clickhouse://username:password@clickhouse:8123/learn_db'
+    
     # Подключение к MinIO
     AIRFLOW_CONN_MINIO_DEFAULT: >-
       aws://minioadmin:minioadmin@minio:9000?
